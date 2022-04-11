@@ -15,10 +15,10 @@ from mmdet.core import encode_mask_results
 
 def single_gpu_test(model,
                     data_loader,
+                    show_options,
                     show=False,
                     out_dir=None,
-                    show_score_thr=0.3,
-                    **kwargs):
+                    show_score_thr=0.3):
     model.eval()
     results = []
     dataset = data_loader.dataset
@@ -55,7 +55,7 @@ def single_gpu_test(model,
                     show=show,
                     out_file=out_file,
                     score_thr=show_score_thr,
-                    **kwargs)
+                    **show_options)
 
         # encode mask results
         if isinstance(result[0], tuple):
