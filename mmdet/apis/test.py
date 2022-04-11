@@ -48,6 +48,8 @@ def single_gpu_test(model,
                 else:
                     out_file = None
 
+                print(model.module)
+
                 model.module.show_result(
                     img_show,
                     result[i],
