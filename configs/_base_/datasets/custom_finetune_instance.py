@@ -4,7 +4,7 @@ _base_ = './coco_instance.py'
 # 1. dataset settings
 dataset_type = 'CocoDataset'
 data_root = "/mnt/122a7683-fa4b-45dd-9f13-b18cc4f4a187/ocr_datasets/newspaper/"
-classes = ('character', 'word',)
+classes = ('char', 'word',)
 data = dict(
     samples_per_gpu=1,
     workers_per_gpu=1,
