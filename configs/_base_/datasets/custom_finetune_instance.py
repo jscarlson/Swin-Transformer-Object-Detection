@@ -26,3 +26,4 @@ data = dict(
         classes=classes,
         ann_file=data_root+'test30-burlington-times-news-1989.json',
         img_prefix=data_root+'lines/'))
+evaluation = dict(metric=['bbox', 'segm'], save_best='bbox_mAP_50')
