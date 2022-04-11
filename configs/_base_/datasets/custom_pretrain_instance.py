@@ -25,4 +25,4 @@ data = dict(
         classes=classes,
         ann_file='/mnt/122a7683-fa4b-45dd-9f13-b18cc4f4a187/synthtxt_simpler_fewer/test20.json',
         img_prefix='/mnt/122a7683-fa4b-45dd-9f13-b18cc4f4a187/synthtxt_simpler_fewer/images'))
-evaluation = dict(metric=['bbox', 'segm'], save_best='bbox_mAP_50')
+evaluation = dict(metric=['bbox', 'segm'], save_best='bbox_mAP')
