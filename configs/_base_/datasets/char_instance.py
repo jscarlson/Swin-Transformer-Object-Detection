@@ -1,5 +1,5 @@
 # the new config inherits the base configs to highlight the necessary modification
-_base_ = './coco_instance.py'
+_base_ = './coco_detection.py'
 
 # 1. dataset settings
 dataset_type = 'CocoDataset'
