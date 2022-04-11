@@ -17,7 +17,8 @@ def single_gpu_test(model,
                     data_loader,
                     show=False,
                     out_dir=None,
-                    show_score_thr=0.3):
+                    show_score_thr=0.3,
+                    **kwargs):
     model.eval()
     results = []
     dataset = data_loader.dataset
@@ -48,14 +49,13 @@ def single_gpu_test(model,
                 else:
                     out_file = None
 
-                print(model.module)
-
                 model.module.show_result(
                     img_show,
                     result[i],
                     show=show,
                     out_file=out_file,
-                    score_thr=show_score_thr)
+                    score_thr=show_score_thr,
+                    **kwargs)
 
         # encode mask results
         if isinstance(result[0], tuple):

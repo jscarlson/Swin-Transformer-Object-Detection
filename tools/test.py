@@ -79,6 +79,12 @@ def parse_args():
         help='custom options for evaluation, the key-value pair in xxx=yyy '
         'format will be kwargs for dataset.evaluate() function')
     parser.add_argument(
+        '--show-options',
+        nargs='+',
+        action=DictAction,
+        help='custom options for evaluation, the key-value pair in xxx=yyy '
+        'format will be kwargs for dataset.evaluate() function')
+    parser.add_argument(
         '--launcher',
         choices=['none', 'pytorch', 'slurm', 'mpi'],
         default='none',
@@ -187,7 +193,7 @@ def main():
     if not distributed:
         model = MMDataParallel(model, device_ids=[0])
         outputs = single_gpu_test(model, data_loader, args.show, args.show_dir,
-                                  args.show_score_thr)
+                                  args.show_score_thr, **args.show_options)
     else:
         model = MMDistributedDataParallel(
             model.cuda(),
