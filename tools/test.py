@@ -192,8 +192,13 @@ def main():
 
     if not distributed:
         model = MMDataParallel(model, device_ids=[0])
-        outputs = single_gpu_test(model, data_loader, args.show, args.show_dir,
-                                  args.show_score_thr, args.show_options)
+        outputs = single_gpu_test(
+            model=model, 
+            data_loader=data_loader, 
+            show=args.show, 
+            out_dir=args.show_dir,
+            show_score_thr=args.show_score_thr, 
+            show_options=args.show_options)
     else:
         model = MMDistributedDataParallel(
             model.cuda(),
