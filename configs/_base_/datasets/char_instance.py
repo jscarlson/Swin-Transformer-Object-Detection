@@ -43,4 +43,4 @@ data = dict(
         ann_file=data_root + 'test20.json',
         img_prefix=data_root + 'images/',
         pipeline=test_pipeline))
-evaluation = dict(metric=['bbox', 'segm'])
+evaluation = dict(metric=['bbox'])
