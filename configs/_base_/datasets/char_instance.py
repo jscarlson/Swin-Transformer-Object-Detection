@@ -1,46 +1,49 @@
+# the new config inherits the base configs to highlight the necessary modification
+_base_ = './coco_instance.py'
+
+# 1. dataset settings
 dataset_type = 'CocoDataset'
-data_root = '/mnt/122a7683-fa4b-45dd-9f13-b18cc4f4a187/synthtxt_simpler_fewer/'
-img_norm_cfg = dict(
-    mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
-train_pipeline = [
-    dict(type='LoadImageFromFile'),
-    dict(type='LoadAnnotations', with_bbox=True, with_mask=True),
-    dict(type='Resize', img_scale=(1333, 800), keep_ratio=True),
-    dict(type='Normalize', **img_norm_cfg),
-    dict(type='Pad', size_divisor=32),
-    dict(type='DefaultFormatBundle'),
-    dict(type='Collect', keys=['img', 'gt_bboxes', 'gt_labels', 'gt_masks']),
-]
-test_pipeline = [
-    dict(type='LoadImageFromFile'),
-    dict(
-        type='MultiScaleFlipAug',
-        img_scale=(1333, 800),
-        flip=False,
-        transforms=[
-            dict(type='Resize', keep_ratio=True),
-            dict(type='Normalize', **img_norm_cfg),
-            dict(type='Pad', size_divisor=32),
-            dict(type='ImageToTensor', keys=['img']),
-            dict(type='Collect', keys=['img']),
-        ])
-]
+classes = ('character', 'word',)
 data = dict(
     samples_per_gpu=1,
     workers_per_gpu=1,
     train=dict(
         type=dataset_type,
-        ann_file=data_root + 'train80.json',
-        img_prefix=data_root + 'images/',
-        pipeline=train_pipeline),
+        # explicitly add your class names to the field `classes`
+        classes=classes,
+        ann_file='/mnt/122a7683-fa4b-45dd-9f13-b18cc4f4a187/synthtxt_simpler_fewer/train80.json',
+        img_prefix='/mnt/122a7683-fa4b-45dd-9f13-b18cc4f4a187/synthtxt_simpler_fewer/images'),
     val=dict(
         type=dataset_type,
-        ann_file=data_root + 'test20.json',
-        img_prefix=data_root + 'images/',
-        pipeline=test_pipeline),
+        # explicitly add your class names to the field `classes`
+        classes=classes,
+        ann_file='/mnt/122a7683-fa4b-45dd-9f13-b18cc4f4a187/synthtxt_simpler_fewer/test20.json',
+        img_prefix='/mnt/122a7683-fa4b-45dd-9f13-b18cc4f4a187/synthtxt_simpler_fewer/images'),
     test=dict(
         type=dataset_type,
-        ann_file=data_root + 'test20.json',
-        img_prefix=data_root + 'images/',
-        pipeline=test_pipeline))
-evaluation = dict(metric=['bbox'])
+        # explicitly add your class names to the field `classes`
+        classes=classes,
+        ann_file='/mnt/122a7683-fa4b-45dd-9f13-b18cc4f4a187/synthtxt_simpler_fewer/test20.json',
+        img_prefix='/mnt/122a7683-fa4b-45dd-9f13-b18cc4f4a187/synthtxt_simpler_fewer/images'))
+
+# 2. model settings
+
+# explicitly over-write all the `num_classes` field from default 80 to 5.
+model = dict(
+    roi_head=dict(
+        bbox_head=[
+            dict(
+                type='Shared2FCBBoxHead',
+                # explicitly over-write all the `num_classes` field from default 80 to 5.
+                num_classes=2),
+            dict(
+                type='Shared2FCBBoxHead',
+                # explicitly over-write all the `num_classes` field from default 80 to 5.
+                num_classes=2),
+            dict(
+                type='Shared2FCBBoxHead',
+                # explicitly over-write all the `num_classes` field from default 80 to 5.
+                num_classes=2)],
+    # explicitly over-write all the `num_classes` field from default 80 to 5.
+    mask_head=dict(num_classes=2)))
+
