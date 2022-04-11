@@ -95,6 +95,7 @@ class CocoDataset(CustomDataset):
         img_id = self.data_infos[idx]['id']
         ann_ids = self.coco.get_ann_ids(img_ids=[img_id])
         ann_info = self.coco.load_anns(ann_ids)
+        print(ann_info)
         return [ann['category_id'] for ann in ann_info]
 
     def _filter_imgs(self, min_size=32):
@@ -228,7 +229,6 @@ class CocoDataset(CustomDataset):
                     data['image_id'] = img_id
                     data['bbox'] = self.xyxy2xywh(bboxes[i])
                     data['score'] = float(bboxes[i][4])
-                    print(self.cat_ids)
                     data['category_id'] = self.cat_ids[label]
                     json_results.append(data)
         return json_results
