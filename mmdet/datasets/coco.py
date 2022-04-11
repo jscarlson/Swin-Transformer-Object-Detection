@@ -53,6 +53,8 @@ class CocoDataset(CustomDataset):
 
         self.coco = COCO(ann_file)
         self.cat_ids = self.coco.get_cat_ids(cat_names=self.CLASSES)
+        print("************")
+        print(self.cat_ids)
         self.cat2label = {cat_id: i for i, cat_id in enumerate(self.cat_ids)}
         self.img_ids = self.coco.get_img_ids()
         data_infos = []
@@ -95,7 +97,6 @@ class CocoDataset(CustomDataset):
         img_id = self.data_infos[idx]['id']
         ann_ids = self.coco.get_ann_ids(img_ids=[img_id])
         ann_info = self.coco.load_anns(ann_ids)
-        print(ann_info)
         return [ann['category_id'] for ann in ann_info]
 
     def _filter_imgs(self, min_size=32):
