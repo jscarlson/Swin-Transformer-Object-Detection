@@ -200,7 +200,7 @@ def main():
             show=args.show, 
             out_dir=args.show_dir,
             show_score_thr=args.show_score_thr, 
-            show_options=args.show_options)
+            **args.show_options)
     else:
         model = MMDistributedDataParallel(
             model.cuda(),
