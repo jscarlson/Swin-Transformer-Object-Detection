@@ -11,10 +11,6 @@ _base_ = [
     '../_base_/schedules/schedule_1x.py', '../_base_/default_runtime.py'
 ]
 
-custom_imports = dict(
-    imports=['mmdet.models.backbones.xcit'],
-    allow_failed_imports=False)
-
 model = dict(
     backbone=dict(
         type='XCiT',
