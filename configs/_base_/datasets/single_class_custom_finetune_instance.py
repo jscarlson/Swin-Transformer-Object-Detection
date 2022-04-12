@@ -12,18 +12,18 @@ data = dict(
         type=dataset_type,
         # explicitly add your class names to the field `classes`
         classes=classes,
-        ann_file=data_root+'train70.json',
+        ann_file=data_root+'train70-burlington-times-news-1989.json',
         img_prefix=data_root+'lines/'),
     val=dict(
         type=dataset_type,
         # explicitly add your class names to the field `classes`
         classes=classes,
-        ann_file=data_root+'test30.json',
+        ann_file=data_root+'test30-burlington-times-news-1989.json',
         img_prefix=data_root+'lines/'),
     test=dict(
         type=dataset_type,
         # explicitly add your class names to the field `classes`
         classes=classes,
-        ann_file=data_root+'test30.json',
+        ann_file=data_root+'test30-burlington-times-news-1989.json',
         img_prefix=data_root+'lines/'))
 evaluation = dict(metric=['bbox', 'segm'], save_best='bbox_mAP', classwise=True)
