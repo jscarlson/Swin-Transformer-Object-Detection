@@ -7,7 +7,7 @@ https://github.com/SwinTransformer/Swin-Transformer-Object-Detection
 
 _base_ = [
     '../_base_/models/mask_rcnn_xcit_p8.py',
-    '../_base_/datasets/coco_instance.py',
+    '../_base_/datasets/single_class_custom_pretrain_instance.py',
     '../_base_/schedules/schedule_1x.py', '../_base_/default_runtime.py'
 ]
 
