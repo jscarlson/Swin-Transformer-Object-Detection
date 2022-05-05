@@ -10,20 +10,20 @@ data = dict(
     workers_per_gpu=1,
     train=dict(
         type=dataset_type,
-        # explicitly add your class names to the field `classes`
         classes=classes,
-        ann_file=data_root+'train70-burlington-times-news-1989.json',
-        img_prefix=data_root+'lines/'),
+        ann_file=data_root + 'noisy_train70sofar_highres_expanded_comma_corrected.json',
+        img_prefix=data_root + 'noisy_lines2/',
+    ),
     val=dict(
         type=dataset_type,
-        # explicitly add your class names to the field `classes`
         classes=classes,
-        ann_file=data_root+'test30-burlington-times-news-1989.json',
-        img_prefix=data_root+'lines/'),
+        ann_file=data_root + 'noisy_test30sofar_highres_expanded_comma_corrected.json',
+        img_prefix=data_root + 'noisy_lines2/',
+    ),
     test=dict(
         type=dataset_type,
-        # explicitly add your class names to the field `classes`
         classes=classes,
-        ann_file=data_root+'test30-burlington-times-news-1989.json',
-        img_prefix=data_root+'lines/'))
-evaluation = dict(metric=['bbox', 'segm'], save_best='bbox_mAP', classwise=True)
+        ann_file=data_root + 'noisy_test30sofar_highres_expanded_comma_corrected.json',
+        img_prefix=data_root + 'noisy_lines2/',
+    ))
+evaluation = dict(interval=1, metric='bbox', save_best='bbox_mAP', classwise=True)
