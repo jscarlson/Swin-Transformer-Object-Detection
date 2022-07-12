@@ -76,7 +76,7 @@ optimizer = dict(constructor='LearningRateDecayOptimizerConstructor', _delete_=T
 lr_config = dict(step=[27, 33])
 runner = dict(type='EpochBasedRunner', max_epochs=36)
 
-checkpoint_config = dict(interval=-1)
+checkpoint_config = dict(interval=1)
 
 # do not use mmdet version fp16
 """fp16 = None
