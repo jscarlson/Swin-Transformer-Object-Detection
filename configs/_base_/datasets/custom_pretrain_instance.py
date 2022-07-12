@@ -3,7 +3,7 @@ _base_ = './coco_instance.py'
 
 # 1. dataset settings
 dataset_type = 'CocoDataset'
-data_root = '/mnt/122a7683-fa4b-45dd-9f13-b18cc4f4a187/synthtxt_simpler_more_punc_color/'
+data_root = '/mnt/122a7683-fa4b-45dd-9f13-b18cc4f4a187/synthtxt_simpler_more_punc_color_10k/'
 classes = ('character', 'word',)
 data = dict(
     samples_per_gpu=1,
