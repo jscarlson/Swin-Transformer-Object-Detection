@@ -86,3 +86,14 @@ optimizer_config = dict(
     bucket_size_mb=-1,
     use_fp16=True,
 )
+
+log_config = dict(
+    interval=10,
+    hooks=[
+        dict(type='TextLoggerHook'),
+        dict(
+            type='WandbLoggerHook',
+            init_kwargs=dict(
+                project='effocr_loc_v1',
+                name='noname'))
+    ])
