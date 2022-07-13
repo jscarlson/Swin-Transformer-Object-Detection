@@ -32,7 +32,7 @@ model = dict(
                 conv_out_channels=256,
                 fc_out_channels=1024,
                 roi_feat_size=7,
-                num_classes=80,
+                num_classes=2,
                 bbox_coder=dict(
                     type='DeltaXYWHBBoxCoder',
                     target_means=[0., 0., 0., 0.],
@@ -51,7 +51,7 @@ model = dict(
                 conv_out_channels=256,
                 fc_out_channels=1024,
                 roi_feat_size=7,
-                num_classes=80,
+                num_classes=2,
                 bbox_coder=dict(
                     type='DeltaXYWHBBoxCoder',
                     target_means=[0., 0., 0., 0.],
@@ -70,7 +70,7 @@ model = dict(
                 conv_out_channels=256,
                 fc_out_channels=1024,
                 roi_feat_size=7,
-                num_classes=80,
+                num_classes=2,
                 bbox_coder=dict(
                     type='DeltaXYWHBBoxCoder',
                     target_means=[0., 0., 0., 0.],
@@ -133,10 +133,12 @@ optimizer = dict(constructor='LearningRateDecayOptimizerConstructor', _delete_=T
                                 'decay_type': 'layer_wise',
                                 'num_layers': 6})
 lr_config = dict(step=[27, 33])
-runner = dict(type='EpochBasedRunnerAmp', max_epochs=36)
+runner = dict(type='EpochBasedRunner', max_epochs=36)
+
+checkpoint_config = dict(interval=1, max_keep_ckpts=10)
 
 # do not use mmdet version fp16
-fp16 = None
+"""fp16 = None
 optimizer_config = dict(
     type="DistOptimizerHook",
     update_interval=1,
@@ -144,4 +146,15 @@ optimizer_config = dict(
     coalesce=True,
     bucket_size_mb=-1,
     use_fp16=True,
-)
+)"""
+
+log_config = dict(
+    interval=10,
+    hooks=[
+        dict(type='TextLoggerHook'),
+        dict(
+            type='WandbLoggerHook',
+            init_kwargs=dict(
+                project='effocr_loc_v1',
+                name='noname'))
+    ])
