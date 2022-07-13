@@ -264,6 +264,9 @@ class CocoDataset(CustomDataset):
                     data['bbox'] = self.xyxy2xywh(bboxes[i])
                     data['score'] = float(mask_score[i])
                     data['category_id'] = self.cat_ids[label]
+                    print(img_id)
+                    print(data['bbox'])
+                    print(data['category_id'])
                     if isinstance(segms[i]['counts'], bytes):
                         segms[i]['counts'] = segms[i]['counts'].decode()
                     data['segmentation'] = segms[i]
