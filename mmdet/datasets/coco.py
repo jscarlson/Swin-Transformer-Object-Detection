@@ -258,15 +258,15 @@ class CocoDataset(CustomDataset):
                 else:
                     segms = seg[label]
                     mask_score = [bbox[4] for bbox in bboxes]
+                print(img_id)
+                print(segms)
+                print(bboxes)
                 for i in range(bboxes.shape[0]):
                     data = dict()
                     data['image_id'] = img_id
                     data['bbox'] = self.xyxy2xywh(bboxes[i])
                     data['score'] = float(mask_score[i])
                     data['category_id'] = self.cat_ids[label]
-                    print(img_id)
-                    print(data['bbox'])
-                    print(data['category_id'])
                     if isinstance(segms[i]['counts'], bytes):
                         segms[i]['counts'] = segms[i]['counts'].decode()
                     data['segmentation'] = segms[i]
