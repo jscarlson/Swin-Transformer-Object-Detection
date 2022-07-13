@@ -258,9 +258,6 @@ class CocoDataset(CustomDataset):
                 else:
                     segms = seg[label]
                     mask_score = [bbox[4] for bbox in bboxes]
-                print(img_id)
-                print(segms)
-                print(bboxes)
                 for i in range(bboxes.shape[0]):
                     data = dict()
                     data['image_id'] = img_id
