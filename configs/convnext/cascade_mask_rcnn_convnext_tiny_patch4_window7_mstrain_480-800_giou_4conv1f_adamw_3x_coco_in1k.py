@@ -8,7 +8,7 @@
 
 _base_ = [
     '../_base_/models/cascade_mask_rcnn_convnext_fpn.py',
-    '../_base_/datasets/custom_pretrain_instance_japanese_vertical.py',
+    '../_base_/datasets/custom_pretrain_instance_japanese_horizontal.py',
     '../_base_/schedules/schedule_1x.py', '../_base_/default_runtime.py'
 ]
 
