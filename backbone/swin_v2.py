@@ -604,7 +604,8 @@ class SwinTransformerV2(nn.Module):
 
         checkpoint_model = checkpoint['model']
         state_dict = self.state_dict()
-        print(checkpoint_model.keys())
+        del checkpoint_model["head.bias"]
+        del checkpoint_model["head.weight"]
         self.load_state_dict(checkpoint_model, strict=False)
 
     @torch.jit.ignore
