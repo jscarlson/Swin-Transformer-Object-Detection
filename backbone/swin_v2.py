@@ -599,12 +599,12 @@ class SwinTransformerV2(nn.Module):
                 Defaults to None.
         """
 
-        # pretrained = pretrained # 'pretrained/xcit_small_12_cp8_dino.pth' # 'pretrained/xcit_small_12_cp16_dino.pth'
         print("Loading pretrained weights from checkpoint", pretrained)
         checkpoint = torch.load(pretrained, map_location='cpu')
 
         checkpoint_model = checkpoint['model']
         state_dict = self.state_dict()
+        print(checkpoint_model.keys())
         self.load_state_dict(checkpoint_model, strict=False)
 
     @torch.jit.ignore
