@@ -592,6 +592,21 @@ class SwinTransformerV2(nn.Module):
             nn.init.constant_(m.bias, 0)
             nn.init.constant_(m.weight, 1.0)
 
+    def init_weights(self, pretrained=None):
+        """Initialize the weights in backbone.
+        Args:
+            pretrained (str, optional): Path to pre-trained weights.
+                Defaults to None.
+        """
+
+        # pretrained = pretrained # 'pretrained/xcit_small_12_cp8_dino.pth' # 'pretrained/xcit_small_12_cp16_dino.pth'
+        print("Loading pretrained weights from checkpoint", pretrained)
+        checkpoint = torch.load(pretrained, map_location='cpu')
+
+        checkpoint_model = checkpoint['model']
+        state_dict = self.state_dict()
+        self.load_state_dict(checkpoint_model, strict=False)
+
     @torch.jit.ignore
     def no_weight_decay(self):
         return {'absolute_pos_embed'}
