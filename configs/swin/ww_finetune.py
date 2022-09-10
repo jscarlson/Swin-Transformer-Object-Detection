@@ -126,7 +126,7 @@ optimizer = dict(_delete_=True, type='AdamW', lr=0.0001, betas=(0.9, 0.999), wei
                                                  'relative_position_bias_table': dict(decay_mult=0.),
                                                  'norm': dict(decay_mult=0.)}))
 lr_config = dict(step=[27, 33])
-runner = dict(type='EpochBasedRunner', max_epochs=36)
+runner = dict(type='EpochBasedRunner', max_epochs=36, create_symlink=False)
 
 checkpoint_config = dict(interval=1, max_keep_ckpts=10)
 
@@ -148,6 +148,6 @@ log_config = dict(
         dict(
             type='WandbLoggerHook',
             init_kwargs=dict(
-                project='effocr_loc_v1',
+                project='effocr_loc_v2',
                 name='noname'))
     ])
