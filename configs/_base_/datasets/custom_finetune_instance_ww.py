@@ -26,4 +26,5 @@ data = dict(
         ann_file=data_root + 'test15.json',
         img_prefix=data_root + 'images/',
     ))
-evaluation = dict(interval=1, metric='bbox', save_best='bbox_mAP', classwise=True)
+evaluation = dict(interval=1, metric='bbox', save_best='bbox_mAP', classwise=True, 
+    create_symlink=False)
