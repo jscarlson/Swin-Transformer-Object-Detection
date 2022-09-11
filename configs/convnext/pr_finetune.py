@@ -135,7 +135,7 @@ optimizer = dict(constructor='LearningRateDecayOptimizerConstructor', _delete_=T
 lr_config = dict(step=[27, 33])
 runner = dict(type='EpochBasedRunner', max_epochs=36)
 
-checkpoint_config = dict(interval=1, max_keep_ckpts=10)
+checkpoint_config = dict(interval=1)
 
 # do not use mmdet version fp16
 """fp16 = None
@@ -155,6 +155,6 @@ log_config = dict(
         dict(
             type='WandbLoggerHook',
             init_kwargs=dict(
-                project='effocr_loc_v1',
+                project='effocr_loc_v2',
                 name='noname'))
     ])
