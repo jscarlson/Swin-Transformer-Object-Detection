@@ -67,7 +67,7 @@ def conv3x3(in_planes, out_planes, stride=1):
         nn.Conv2d(
             in_planes, out_planes, kernel_size=3, stride=stride, padding=1, bias=False
         ),
-        nn.SyncBatchNorm(out_planes)
+        nn.BatchNorm2d(out_planes)
     )
 
 
@@ -131,7 +131,7 @@ class LPI(nn.Module):
         self.conv1 = torch.nn.Conv2d(in_features, out_features, kernel_size=kernel_size,
                                      padding=padding, groups=out_features)
         self.act = act_layer()
-        self.bn = nn.BatchNorm2d(in_features) # nn.SyncBatchNorm(in_features)
+        self.bn = nn.BatchNorm2d(in_features)
         self.conv2 = torch.nn.Conv2d(in_features, out_features, kernel_size=kernel_size,
                                      padding=padding, groups=out_features)
 
@@ -361,7 +361,7 @@ class XCiT(nn.Module):
         if patch_size == 16:
             self.fpn1 = nn.Sequential(
                 nn.ConvTranspose2d(embed_dim, embed_dim, kernel_size=2, stride=2),
-                nn.SyncBatchNorm(embed_dim),
+                nn.BatchNorm2d(embed_dim),
                 nn.GELU(),
                 nn.ConvTranspose2d(embed_dim, embed_dim, kernel_size=2, stride=2),
             )
